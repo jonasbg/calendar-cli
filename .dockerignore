@@ -1,0 +1,9 @@
+tests
+examples
+__pycache__
+data
+*.txt
+*.md
+.git
+Dockerfile
+*.tar.gz

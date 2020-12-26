@@ -8,6 +8,14 @@ My implementation
 I've implemented support for floating time, ie 7.5h duration for events.
 I've also added as a requirement `description` as that was the use case I needed. If you must have it optional - please fix :) 
 
+Usage example
+```
+docker build -t jonasbg/calendar-cli:(date '+%Y%m%d') .
+docker run --rm -e CALDAV_USER=$USER -e CALDAV_PASS=$PASSWORD -e CALDAV_CALENDAR_URL=CALDAV_CAL_URL -e CALDAV_URL=$CALDAV_URL -v $PWD/data:/data -it jonasbg/calendar-cli /bin/sh
+docker save jonasbg/calendar-cli:(date '+%Y%m%d') | gzip > calendar-cli.tar.gz
+docker scan jonasbg/calendar-cli
+```
+
 Other tools
 -----------
 

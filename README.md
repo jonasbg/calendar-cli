@@ -3,6 +3,11 @@ calendar-cli
 
 Simple command-line CalDav client, making it possible to add calendar events, browse an agenda and doing task management towards a caldav server.
 
+My implementation
+-----------
+I've implemented support for floating time, ie 7.5h duration for events.
+I've also added as a requirement `description` as that was the use case I needed. If you must have it optional - please fix :) 
+
 Other tools
 -----------
 

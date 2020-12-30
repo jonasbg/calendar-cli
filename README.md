@@ -3,6 +3,19 @@ calendar-cli
 
 Simple command-line CalDav client, making it possible to add calendar events, browse an agenda and doing task management towards a caldav server.
 
+My changes (jonasbg)
+-----------
+- Added support for floating hours, ie 7.5h for events.
+- Added description as a requirements because I'm lazy and needed it. If you can make it optional please fix it for me :) 
+- Added Docker support based on security
+
+```
+docker build -t jonasbg/calendar-cli:(date '+%Y%m%d') -t jonasbg/calendar-cli .
+docker scan jonasbg/calendar-cli
+docker save jonasbg/calendar-cli:(date '+%Y%m%d') | gzip > calendar-cli.tar.gz
+docker run --rm -e CALDAV_USER=$USER -e CALDAV_PASS=$PASSWORD -e CALDAV_CALENDAR_URL=/$USER/95ead044-a129-e9f8-5809-9842b2bafb9a/ -e CALDAV_URL=http://$IP:5232 -v $PWD/data:/data jonasbg/calendar-cli
+```
+
 Other tools
 -----------
 

@@ -7,6 +7,7 @@ My changes (jonasbg)
 -----------
 - Added support for floating hours, ie 7.5h for events.
 - Added description as a requirements because I'm lazy and needed it. If you can make it optional please fix it for me :) 
+- Added support for requirements.txt - install it with `pip install -r requirements.txt` don't know if `./setup install` is obsoleted now ¯\_(ツ)_/¯ , probably not.
 - Added Docker support based on security
 
 ```

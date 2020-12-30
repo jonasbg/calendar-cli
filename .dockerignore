@@ -6,5 +6,9 @@ data
 *.md
 .git
 Dockerfile
+<<<<<<< HEAD
 *.tar.gz
 !requirements.txt
+=======
+*.tar.gz
+>>>>>>> 504d5e09da4b21f2e0538e3d09c05f3d9f597e58

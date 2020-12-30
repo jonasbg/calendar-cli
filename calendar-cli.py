@@ -332,7 +332,7 @@ def calendar_add(caldav_conn, args):
         event_time = event_spec[0]
         event_duration = '1h'
     ## TODO: error handling
-    event_duration_secs = int(event_duration[:-1]) * time_units[event_duration[-1:]]
+    event_duration_secs = float(event_duration[:-1]) * time_units[event_duration[-1:]]
     dtstart = dateutil.parser.parse(event_spec[0], ignoretz=True)
     if (args.whole_day or
         (event_duration_secs % (60*60*24) == 0 and
@@ -363,6 +363,7 @@ def calendar_add(caldav_conn, args):
         if val:
             event.add(attr, val)
     event.add('summary', ' '.join(args.summary))
+    event.add('description',  ' '.join(args.description.replace('\\n', '\n').replace('\\t', '\t')))
     cal.add_component(event)
     ## workaround for getting RFC-compliant ical data,
     ## ref https://github.com/collective/icalendar/issues/272#issuecomment-640204031
@@ -911,6 +912,7 @@ def main():
     calendar_add_parser = calendar_subparsers.add_parser('add')
     calendar_add_parser.add_argument('event_time', help="Timestamp and duration of the event.  See the documentation for event_time specifications")
     calendar_add_parser.add_argument('summary', nargs='+')
+    calendar_add_parser.add_argument('description', help="Description")
     calendar_add_parser.set_defaults(func=calendar_add)
     calendar_add_parser.add_argument('--whole-day', help='Whole-day event', action='store_true', default=False)
     calendar_add_parser.add_argument('--private', help='Private event', action='store_true', default=False)

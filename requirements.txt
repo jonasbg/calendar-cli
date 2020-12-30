@@ -1,0 +1,14 @@
+caldav==0.7.1
+calendar-cli==0.12.0
+certifi==2020.12.5
+chardet==4.0.0
+icalendar==4.0.7
+idna==2.10
+lxml==4.6.2
+python-dateutil==2.8.1
+pytz==2020.4
+requests==2.25.1
+six==1.15.0
+tzlocal==2.1
+urllib3==1.26.2
+vobject==0.9.6.1

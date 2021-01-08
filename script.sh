@@ -11,6 +11,19 @@ CALENDAR="/data/calendar.json"
 WORKBOOK="/data/workbook.json"
 CALENDAR_CLI="/app/calendar-cli --timezone="Europe/Oslo" --caldav-url=$CALDAV_URL --caldav-user=$CALDAV_USER --caldav-pass=$CALDAV_PASS --calendar-url=$CALDAV_CALENDAR_URL"
 
+validate_json() {
+    if [ $(cat $1 | jq length) -gt 0 ]; 
+    then 
+        echo "$1 VALIDATED as JSON"
+    else
+        echo "$1 is not a valid JSON format"
+        exit 1
+    fi
+} 
+
+validate_json $CALENDAR
+validate_json $WORKBOOK
+
 echo "[INFO] Deleting old entries"
 COUNTER=0
 for uid in $($CALENDAR_CLI calendar agenda --from-time=$TODAY --agenda-days=180 --event-template='{uid}') ; do $CALENDAR_CLI calendar delete --event-uid=$uid && COUNTER=$((COUNTER + 1)); done

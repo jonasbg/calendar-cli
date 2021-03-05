@@ -44,5 +44,5 @@ jobs:
         --build-arg VERSION=${{github.ref}} \
         --build-arg BUILD_DATE=$(date '+%Y%m%d') \
         --build-arg GITHUB_REF=${GITHUB_SHA::8} \
-        --platform linux/amd64,linux/arm64 \
+        --platform linux/amd64 \
         --push

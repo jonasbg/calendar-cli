@@ -1,1 +1,0 @@
-@hourly /app/script.sh $CALDAV_URL $CALDAV_USER $CALDAV_PASS $CALDAV_CALENDAR_URL 

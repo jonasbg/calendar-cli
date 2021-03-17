@@ -1,11 +1,6 @@
 FROM python:alpine3.12
 
 LABEL Author="Jonas Grimsgaard (jonasbg'gmail.com)" 
-
-ENV CALDAV_URL=
-ENV CALDAV_USER=
-ENV CALDAV_PASS=
-ENV CALDAV_CALENDAR_URL=
 ENV TZ=Europe/Oslo
 
 RUN apk add --no-cache coreutils=8.32-r0 && \
@@ -39,4 +34,4 @@ RUN chmod +x script.sh
 
 USER appuser
 
-CMD ["supercronic", "cron-job"]
+RUN ln -s /calendar-cli/calendar-cli.py /bin/calendar

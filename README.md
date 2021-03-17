@@ -11,10 +11,11 @@ My changes (jonasbg)
 - Added Docker support based on security
 
 ```
+docker start 37 #start tomsquest/docker-radicale
 docker build -t jonasbg/calendar-cli:(date '+%Y%m%d') -t jonasbg/calendar-cli .
 docker scan jonasbg/calendar-cli
 docker save jonasbg/calendar-cli:(date '+%Y%m%d') | gzip > calendar-cli.tar.gz
-docker run --rm -e CALDAV_USER=$USER -e CALDAV_PASS=$PASSWORD -e CALDAV_CALENDAR_URL=/$USER/95ead044-a129-e9f8-5809-9842b2bafb9a/ -e CALDAV_URL=http://$IP:5232 -v $PWD/data:/data jonasbg/calendar-cli
+docker run --rm -it -e CALDAV_USER=$USER -e CALDAV_PASS=$PASSWORD -e CALDAV_CALENDAR_URL=/$USER/95ead044-a129-e9f8-5809-9842b2bafb9a/ -e CALDAV_URL=http://(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 37):5232 -v $PWD/data:/data jonasbg/calendar-cli /bin/sh
 ```
 
 Other tools

@@ -8,6 +8,12 @@ ENV CALDAV_PASS=
 ENV CALDAV_CALENDAR_URL=
 ENV TZ=Europe/Oslo
 
+RUN apk add --no-cache coreutils=8.32-r0 && \
+    apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
+    apk add --no-cache libxslt && \
+    pip install --no-cache-dir lxml>=3.5.0 && \
+    apk del .build-deps
+
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
     SUPERCRONIC_SHA1SUM=048b95b48b708983effb2e5c935a1ef8483d9e3e
@@ -18,12 +24,6 @@ RUN apk add --no-cache curl=7.69.1-r3 tzdata\
     && chmod +x "$SUPERCRONIC" \
     && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
     && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
-
-RUN apk add --no-cache jq=1.6-r1  coreutils=8.32-r0 && \
-    apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
-    apk add --no-cache libxslt && \
-    pip install --no-cache-dir lxml>=3.5.0 && \
-    apk del .build-deps
 
 # Create a group and user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
@@ -36,8 +36,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 RUN chmod +x script.sh
-
-RUN ./setup.py install
 
 USER appuser
 

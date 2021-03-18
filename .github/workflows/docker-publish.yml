@@ -39,10 +39,10 @@ jobs:
     - name: Build the Docker image
       run: |
         docker buildx build . --file Dockerfile \
-        --tag jonasbg/calendar-cli:$(date '+%Y%m%d')-alpine \
-        --tag jonasbg/calendar-cli:alpine \
+        --tag jonasbg/calendar-cli:$(date '+%Y%m%d') \
+        --tag jonasbg/calendar-cli:latest \
         --build-arg VERSION=${{github.ref}} \
         --build-arg BUILD_DATE=$(date '+%Y%m%d') \
         --build-arg GITHUB_REF=${GITHUB_SHA::8} \
-        --platform linux/amd64 \
+        --platform linux/amd64,linux/arm64 \
         --push

@@ -31,6 +31,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN ln -s /calendar-cli/calendar-cli.py /usr/local/bin/calendar
 USER appuser
-
-RUN ln -s /calendar-cli/calendar-cli.py /bin/calendar

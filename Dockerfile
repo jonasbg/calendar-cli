@@ -9,10 +9,6 @@ RUN apk add --no-cache coreutils=8.32-r0 && \
     pip install --no-cache-dir lxml>=3.5.0 && \
     apk del .build-deps
 
-# Create a group and user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-# Tell docker that all future commands should run as the appuser user
-
 WORKDIR /calendar-cli
 COPY requirements.txt .
 RUN pip install -r requirements.txt
@@ -20,4 +16,3 @@ RUN pip install -r requirements.txt
 COPY . .
 
 RUN ln -s /calendar-cli/calendar-cli.py /usr/local/bin/calendar
-USER appuser

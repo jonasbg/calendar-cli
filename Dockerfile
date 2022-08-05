@@ -1,4 +1,4 @@
-FROM python:3.9.12-alpine3.15
+FROM python:3.11.0b5-alpine3.15
 
 LABEL Author="Jonas Grimsgaard (jonasbg'gmail.com)" 
 ENV TZ=Europe/Oslo
